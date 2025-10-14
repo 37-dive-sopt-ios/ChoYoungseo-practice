@@ -10,7 +10,7 @@ import UIKit
 final class LoginViewController: UIViewController {
     
     // MARK: - UI Components
-    
+
     private let titleLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 69, y: 161, width: 236, height: 44))
         label.text = "동네라서 가능한 모든것\n당근에서 가까운 이웃과 함께해요."
@@ -29,7 +29,7 @@ final class LoginViewController: UIViewController {
         textField.layer.cornerRadius = 6
         textField.clearButtonMode = .whileEditing   // 입력 중 X버튼 표시하는 속성입니다.
         textField.setPadding(10) // 텍스트필드에 패딩 넣을 일이 많아서, 편하게 쓰려고 Extension으로 따로 빼뒀어요!
-        
+      
         return textField
     }()
     
