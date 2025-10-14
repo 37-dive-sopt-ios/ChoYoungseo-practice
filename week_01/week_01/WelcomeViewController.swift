@@ -93,7 +93,3 @@ final class WelcomeViewController: UIViewController {
     @objc
     private func goHomeButtonDidTap() { }
 }
-
-#Preview {
-    WelcomeViewController()
-}
