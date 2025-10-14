@@ -49,7 +49,7 @@ final class LoginViewController: UIViewController {
     
     private lazy var loginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 21, y: 422, width: 332, height: 52))
-        button.backgroundColor = .primaryOrange
+        button.backgroundColor = .grey300
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 18)
@@ -64,6 +64,10 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setLayout()
+        
+        [idTextField, passwordTextField].forEach {
+            $0.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        }
     }
     
     // MARK: - Setup Methods
@@ -92,12 +96,15 @@ final class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @objc
+    private func textFieldDidChange() {
+        let isEnabled = !(idTextField.text?.isEmpty ?? true) && !(passwordTextField.text?.isEmpty ?? true)
+        loginButton.isEnabled = isEnabled
+        loginButton.backgroundColor = isEnabled ? .primaryOrange : .grey300
+    }
+    
+    @objc
     private func loginButtonDidTap() {
         //presentToWelcomeVC()
         pushToWelcomeVC()
     }
-}
-
-#Preview {
-    LoginViewController()
 }
