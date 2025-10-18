@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  week_01
+//  week_02
 //
-//  Created by 조영서 on 10/11/25.
+//  Created by 조영서 on 10/18/25.
 //
 
 import UIKit
@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       // 2.
         let window = UIWindow(windowScene: windowScene)
       // 3.
-        let vc = UINavigationController(rootViewController: LoginViewController())
+        let vc = UINavigationController(rootViewController: ScrollViewController())
       // 4.
         window.rootViewController = vc
       // 5.
@@ -57,4 +57,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 }
-
