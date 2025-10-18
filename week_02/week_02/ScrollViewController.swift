@@ -74,40 +74,51 @@ final class ScrollViewController: UIViewController {
         contentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView.contentLayoutGuide)
             $0.width.equalTo(scrollView.frameLayoutGuide)
-            $0.height.equalTo(2000)
         }
         
         redBox.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.height.equalToSuperview().multipliedBy(0.5)
+            $0.top.leading.equalToSuperview()
+            $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.height.equalTo(300)
         }
         
         orangeBox.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalTo(redBox.snp.trailing)
+            $0.trailing.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.height.equalTo(300)
         }
         
         yellowBox.snp.makeConstraints {
             $0.top.equalTo(redBox.snp.bottom)
+            $0.leading.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.height.equalTo(300)
         }
         
         greenBox.snp.makeConstraints {
             $0.top.equalTo(orangeBox.snp.bottom)
             $0.leading.equalTo(yellowBox.snp.trailing)
+            $0.trailing.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.height.equalTo(300)
         }
         
         blueBox.snp.makeConstraints {
             $0.top.equalTo(yellowBox.snp.bottom)
+            $0.leading.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.height.equalTo(300)
         }
         
         purpleBox.snp.makeConstraints {
             $0.top.equalTo(greenBox.snp.bottom)
             $0.leading.equalTo(blueBox.snp.trailing)
+            $0.trailing.equalToSuperview()
             $0.width.equalToSuperview().multipliedBy(0.5)
+            $0.height.equalTo(300)
+            $0.bottom.equalToSuperview()
         }
     }
 }
