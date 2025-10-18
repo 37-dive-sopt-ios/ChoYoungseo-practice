@@ -14,6 +14,7 @@ final class WelcomeViewController_Closure: UIViewController {
     var id: String?
     var completionHandler: ((String) -> Void)?
     
+    
     // MARK: - UI Components
     
     private let logoImageView: UIImageView = {
@@ -30,7 +31,7 @@ final class WelcomeViewController_Closure: UIViewController {
         return label
     }()
     
-    private var goHomeButton: UIButton = {
+    private let goHomeButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 20, y: 426, width: 335, height: 58))
         button.backgroundColor = .primaryOrange
         button.setTitle("메인으로", for: .normal)
@@ -40,7 +41,7 @@ final class WelcomeViewController_Closure: UIViewController {
         return button
     }()
     
-    private var backToLoginButton: UIButton = {
+    private let backToLoginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 20, y: 498, width: 335, height: 58))
         button.backgroundColor = .grey200
         button.setTitle("다시 로그인", for: .normal)
@@ -49,6 +50,7 @@ final class WelcomeViewController_Closure: UIViewController {
         button.layer.cornerRadius = 6
         return button
     }()
+    
     
     // MARK: - Lifecycle
     
@@ -65,6 +67,27 @@ final class WelcomeViewController_Closure: UIViewController {
         goHomeButton.addTarget(self, action: #selector(goHomeButtonDidTap), for: .touchUpInside)
     }
     
+    
+    // MARK: - Actions
+    
+    @objc
+    private func backToLoginButtonDidTap() {
+        let nickname = id ?? "당근당근"
+        completionHandler?("\(nickname)님이 다시 로그인 버튼을 눌렀어요!")
+        
+        if navigationController == nil {
+            dismiss(animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc
+    private func goHomeButtonDidTap() {
+        // 홈 화면 이동 로직
+    }
+
+    
     // MARK: - Private Methods
     
     private func setLayout() {
@@ -79,25 +102,5 @@ final class WelcomeViewController_Closure: UIViewController {
         } else {
             welcomeLabel.text = "뿅 ㅋㅋ"
         }
-    }
-    
-    // MARK: - Actions
-    
-    @objc
-    private func backToLoginButtonDidTap() {
-        let nickname = id ?? "알 수 없는 사용자"
-        
-        completionHandler?("\(nickname)님이 다시 로그인 버튼을 눌렀어요!")
-        
-        if navigationController == nil {
-            dismiss(animated: true)
-        } else {
-            navigationController?.popViewController(animated: true)
-        }
-    }
-    
-    @objc
-    private func goHomeButtonDidTap() {
-        // 홈 화면 이동 로직
     }
 }

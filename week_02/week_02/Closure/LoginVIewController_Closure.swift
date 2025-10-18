@@ -55,6 +55,7 @@ final class LoginViewController_Closure: UIViewController {
         return button
     }()
     
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -62,6 +63,7 @@ final class LoginViewController_Closure: UIViewController {
         view.backgroundColor = .white
         setLayout()
     }
+    
     
     // MARK: - Layout
     
@@ -71,19 +73,6 @@ final class LoginViewController_Closure: UIViewController {
         }
     }
     
-    // MARK: - Navigation
-    
-    private func pushToWelcomeVC() {
-        let welcomeVC = WelcomeViewController_Closure()
-        welcomeVC.id = idTextField.text
-        
-        // completionHandler 설정
-        welcomeVC.completionHandler = { [weak self] message in
-            self?.handleCompletion(message: message)
-        }
-        
-        navigationController?.pushViewController(welcomeVC, animated: true)
-    }
     
     // MARK: - Actions
     
@@ -91,7 +80,24 @@ final class LoginViewController_Closure: UIViewController {
     private func loginButtonDidTap() {
         pushToWelcomeVC()
     }
+    
+    
+    // MARK: - Navigation
+    
+    private func pushToWelcomeVC() {
+        let welcomeVC = WelcomeViewController_Closure()
+        welcomeVC.id = idTextField.text
         
+        welcomeVC.completionHandler = { [weak self] message in
+            self?.handleCompletion(message: message)
+        }
+        
+        navigationController?.pushViewController(welcomeVC, animated: true)
+    }
+    
+    
+    // MARK: - Private Methods
+    
     private func handleCompletion(message: String) {
         titleLabel.text = message
         idTextField.text = ""
