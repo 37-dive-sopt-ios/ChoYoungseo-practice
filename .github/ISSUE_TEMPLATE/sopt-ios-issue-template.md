@@ -1,7 +1,7 @@
 ---
 name: SOPT iOS issue template
 about: 37기 SOPT iOS 이슈 템플릿입니다.
-title: "[FEAT] : n주차 연습과제"
+title: "[feat] : n주차 연습과제"
 labels: ''
 assignees: jjwm10625
 
