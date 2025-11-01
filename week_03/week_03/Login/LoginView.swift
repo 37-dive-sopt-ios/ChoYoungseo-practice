@@ -1,14 +1,15 @@
 //
-//  LoginViewController_Delegate.swift
+//  LoginView.swift
 //  week_03
 //
-//  Created by 조영서 on 10/18/25.
+//  Created by 조영서 on 11/1/25.
 //
 
 import UIKit
 import SnapKit
+import Then
 
-final class LoginViewController_Delegate: UIViewController {
+final class LoginView: UIView {
     
     // MARK: - UI Components
     
@@ -22,7 +23,7 @@ final class LoginViewController_Delegate: UIViewController {
         return label
     }()
     
-    private let idTextField: UITextField = {
+    private(set) var idTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "아이디를 입력해주세요"
         textField.font = UIFont(name: "Pretendard-SemiBold", size: 14)
@@ -45,41 +46,37 @@ final class LoginViewController_Delegate: UIViewController {
         return textField
     }()
     
-    private lazy var loginButton: UIButton = {
+    private(set) lazy var loginButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .primaryOrange
         button.setTitle("로그인하기", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 18)
         button.layer.cornerRadius = 6
-        button.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
         return button
     }()
     
-    public func retryLogin(didTapReloginWith message: String) {
-        titleLabel.text = message
-        idTextField.text = ""
-        passwordTextField.text = ""
-        loginButton.setTitle("다시 로그인하기", for: .normal)
+    // MARK: - Init
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        backgroundColor = .white
+        setLayout()
     }
     
-    // MARK: - Lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        setLayout()
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Layout
     
     private func setLayout() {
-        
-        view.addSubviews(titleLabel, idTextField, passwordTextField, loginButton)
+        addSubviews(titleLabel, idTextField, passwordTextField, loginButton)
         
         titleLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(116)
+            $0.top.equalTo(safeAreaLayoutGuide).offset(116)
         }
         
         idTextField.snp.makeConstraints {
@@ -101,27 +98,9 @@ final class LoginViewController_Delegate: UIViewController {
         }
     }
     
-    // MARK: - Navigation
-
-    private func pushToWelcomeVC() {
-        let welcomeViewController = WelcomeViewController_Delegate()
-        welcomeViewController.id = idTextField.text
-        welcomeViewController.delegate = self
-        navigationController?.pushViewController(welcomeViewController, animated: true)
-    }
+    // MARK: - Public Method
     
-    // MARK: - Actions
-    
-    @objc
-    private func loginButtonDidTap() {
-        pushToWelcomeVC()
-    }
-}
-
-// MARK: - Extensions
-
-extension LoginViewController_Delegate: WelcomeReloginDelegate {
-    public func retryLogin(_ viewController: UIViewController, didTapReloginWith message: String) {
+    public func retryLogin(didTapReloginWith message: String) {
         titleLabel.text = message
         idTextField.text = ""
         passwordTextField.text = ""
